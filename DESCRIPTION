@@ -1,0 +1,13 @@
+Package: claudiousstatisticus
+Title: Placeholder Scatter Plots with 'ggplot2'
+Version: 0.0.0.9000
+Authors@R: person("Koshlan", email = "koshlan@gmail.com", role = c("aut", "cre"))
+Description: A minimal placeholder package that draws 'ggplot2' scatter
+    plots of the built-in 'mtcars' and 'iris' datasets.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports: ggplot2
+Suggests: testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
