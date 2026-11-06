@@ -7,7 +7,10 @@ Description: A small package that draws 'ggplot2' scatter plots of the
     component analysis on any dataset, and draws PCA biplots of the loadings.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Imports: ggplot2, stats
+Imports:
+    ggplot2,
+    ggrepel,
+    stats
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)

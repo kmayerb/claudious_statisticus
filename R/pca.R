@@ -59,7 +59,8 @@ run_pca <- function(data, na.rm = TRUE) {
 #'
 #' @param pca A `prcomp` object, e.g. from [run_pca()].
 #' @param label_points If `TRUE` (default), label observations with their row
-#'   names; otherwise draw points only.
+#'   names (placed with 'ggrepel' to avoid overlaps); otherwise draw points
+#'   only.
 #' @param arrow_scale Optional multiplier for arrow length. By default arrows
 #'   are stretched so the longest one reaches about 80% of the score range.
 #'
@@ -95,9 +96,6 @@ biplot_pca <- function(pca, label_points = TRUE, arrow_scale = NULL) {
   }
   loadings$xend <- loadings$PC1 * arrow_scale
   loadings$yend <- loadings$PC2 * arrow_scale
-  # Push labels just past the arrow tip, justified away from the origin.
-  loadings$hjust <- ifelse(loadings$xend >= 0, -0.1, 1.1)
-  loadings$vjust <- ifelse(loadings$yend >= 0, -0.3, 1.3)
 
   axis_lab <- function(i) sprintf("PC%d (%.1f%% of variance)", i, 100 * var_exp[i])
 
@@ -107,9 +105,10 @@ biplot_pca <- function(pca, label_points = TRUE, arrow_scale = NULL) {
     ggplot2::geom_point(colour = "grey45", size = 1.8, alpha = 0.8)
 
   if (label_points) {
-    p <- p + ggplot2::geom_text(
+    p <- p + ggrepel::geom_text_repel(
       ggplot2::aes(label = .data$label),
-      colour = "grey45", size = 2.6, vjust = -0.8, check_overlap = TRUE
+      colour = "grey50", size = 2.6, max.overlaps = Inf,
+      segment.colour = "grey80", seed = 1
     )
   }
 
@@ -121,12 +120,13 @@ biplot_pca <- function(pca, label_points = TRUE, arrow_scale = NULL) {
       arrow = ggplot2::arrow(length = ggplot2::unit(0.18, "cm")),
       linewidth = 0.8
     ) +
-    ggplot2::geom_text(
+    ggrepel::geom_label_repel(
       data = loadings,
       ggplot2::aes(x = .data$xend, y = .data$yend, label = .data$variable,
-                   colour = .data$contribution,
-                   hjust = .data$hjust, vjust = .data$vjust),
-      fontface = "bold", size = 3.6, show.legend = FALSE
+                   colour = .data$contribution),
+      fontface = "bold", size = 3.6, show.legend = FALSE,
+      fill = ggplot2::alpha("white", 0.85), label.size = NA,
+      point.padding = 0, min.segment.length = Inf, seed = 1
     ) +
     ggplot2::scale_colour_gradient(
       name = "Contribution to\nPC1 + PC2 (%)", low = "#6baed6", high = "#08306b"

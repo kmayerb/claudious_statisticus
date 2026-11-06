@@ -10,7 +10,8 @@ biplot_pca(pca, label_points = TRUE, arrow_scale = NULL)
 \item{pca}{A \code{prcomp} object, e.g. from \code{\link[=run_pca]{run_pca()}}.}
 
 \item{label_points}{If \code{TRUE} (default), label observations with their row
-names; otherwise draw points only.}
+names (placed with 'ggrepel' to avoid overlaps); otherwise draw points
+only.}
 
 \item{arrow_scale}{Optional multiplier for arrow length. By default arrows
 are stretched so the longest one reaches about 80\% of the score range.}

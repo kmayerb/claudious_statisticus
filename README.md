@@ -1,6 +1,6 @@
 # claudiousstatisticus
 
-R package: `ggplot2` scatter plots of built-in datasets, plus PCA with biplots.
+R package: `ggplot2` scatter plots of built-in datasets, plus PCA with biplots (labels placed with `ggrepel`).
 
 ```r
 # install.packages("remotes")

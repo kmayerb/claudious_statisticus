@@ -33,7 +33,7 @@ test_that("biplot_pca returns a renderable ggplot with loadings", {
   p <- biplot_pca(run_pca(mtcars))
   expect_s3_class(p, "ggplot")
   geoms <- vapply(p$layers, function(l) class(l$geom)[1], character(1))
-  expect_true(all(c("GeomPoint", "GeomSegment", "GeomText") %in% geoms))
+  expect_true(all(c("GeomPoint", "GeomSegment", "GeomTextRepel", "GeomLabelRepel") %in% geoms))
   expect_no_error(ggplot2::ggplot_build(p))
 
   seg <- p$layers[[which(geoms == "GeomSegment")]]$data
