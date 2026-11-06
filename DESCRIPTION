@@ -1,12 +1,13 @@
 Package: claudiousstatisticus
-Title: Placeholder Scatter Plots with 'ggplot2'
+Title: Scatter Plots and PCA Biplots with 'ggplot2'
 Version: 0.0.0.9000
 Authors@R: person("Koshlan", email = "koshlan@gmail.com", role = c("aut", "cre"))
-Description: A minimal placeholder package that draws 'ggplot2' scatter
-    plots of the built-in 'mtcars' and 'iris' datasets.
+Description: A small package that draws 'ggplot2' scatter plots of the
+    built-in 'mtcars' and 'iris' datasets, runs centered and scaled principal
+    component analysis on any dataset, and draws PCA biplots of the loadings.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Imports: ggplot2
+Imports: ggplot2, stats
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
